@@ -1,6 +1,6 @@
 = Let's Make a Story
 == About
-  Let's Make a Story is a web application that allows users to create a story one word or sentence at a time.
+Let's Make a Story is a web application that allows users to create a story one word or sentence at a time.
 
 === Ruby version
 2.1.3p242 (2014-09-19 revision 47630)
