@@ -1,3 +1,4 @@
+{<img alt='Stories in Ready' src='https://badge.waffle.io/MelizzaP/story-time.png?label=ready&title=Ready' />}[https://waffle.io/MelizzaP/story-time]
 = Let's Make a Story
 == About
 Let's Make a Story is a web application that allows users to create a story one word or sentence at a time.
