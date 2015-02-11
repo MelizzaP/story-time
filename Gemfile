@@ -50,6 +50,8 @@ group :development, :test do
   # gem 'capybara'
   # gem 'launchy'
   
+  gem 'rake'
+  
 end
 
 group :test do
