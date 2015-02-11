@@ -1,4 +1,4 @@
 language: ruby
 
 # uncomment this line if your project needs to run something other than `rake`:
-# script: bundle exec rspec spec
+script: bundle exec rspec
