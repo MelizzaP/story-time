@@ -45,11 +45,14 @@ group :development, :test do
   
   #respec stuff
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
   # gem 'capybara'
   # gem 'launchy'
   
 end
 
 group :test do
-  gem 'factory_girl_rails'
+  
+  
 end
