@@ -47,7 +47,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  # gem 'capybara'
+  gem 'capybara'
   # gem 'launchy'
   
   gem 'rake'
