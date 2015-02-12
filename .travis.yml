@@ -1,4 +1,11 @@
 language: ruby
+rvm:
+  - 2.1.0
+addons:
+  postgresql: "9.3"
+
+before_script:
+  - psql -c 'create database story_test;' -U postgres
 
 # uncomment this line if your project needs to run something other than `rake`:
-# script: bundle exec rspec spec
+script: bundle exec rspec
