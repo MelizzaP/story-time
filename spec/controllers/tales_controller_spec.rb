@@ -29,6 +29,19 @@ RSpec.describe TalesController, type: :controller do
      expect(response).to have_http_status(:success)
     end
   end
+  
+  describe "GET #new" do
+    it "returns http success" do
+      get :new
+      expect(response).to have_http_status(:success)
+    end
+    
+    it 'creates a new tale' do
+      get :new
+      tale = response.body
+      expect(tale).to_not be_nil
+    end
+  end
 
   describe "GET #create" do
     xit "returns http success" do
@@ -44,12 +57,7 @@ RSpec.describe TalesController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    xit "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
-    end
-  end
+
 
   describe "GET #destroy" do
     xit "returns http success" do
