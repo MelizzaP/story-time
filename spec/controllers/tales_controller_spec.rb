@@ -36,7 +36,7 @@ RSpec.describe TalesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
     
-    it 'creates a new tale' do
+    it 'creates a new instance of a tale' do
       get :new
       tale = response.body
       expect(tale).to_not be_nil
