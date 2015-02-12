@@ -14,6 +14,21 @@ RSpec.describe TalesController, type: :controller do
       expect(response.to_a.count).to eq(3)
     end
   end
+  
+  describe "GET #show" do
+    it 'returns the tale by id' do
+      tale = FactoryGirl.create(:tale)
+      get :show, { 'id' => tale.id }
+      test_tale = JSON.parse(response.body)
+      expect(test_tale['id']).to eq(tale.id)
+    end
+    
+    it 'returns http success' do
+     tale = FactoryGirl.create(:tale)
+     get :show, { 'id' => tale.id }
+     expect(response).to have_http_status(:success)
+    end
+  end
 
   describe "GET #create" do
     xit "returns http success" do
@@ -25,13 +40,6 @@ RSpec.describe TalesController, type: :controller do
   describe "GET #edit" do
     xit "returns http success" do
       get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #show" do
-    xit "returns http success" do
-      get :show
       expect(response).to have_http_status(:success)
     end
   end
