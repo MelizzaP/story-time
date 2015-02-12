@@ -9,15 +9,17 @@ class TalesController < ApplicationController
     render json: @tale, status: 200
   end
   
+  def new
+    @tale = Tale.new
+  end
+  
   def create
   end
 
   def edit
   end
 
-  def new
-  end
-
   def destroy
   end
+  
 end
