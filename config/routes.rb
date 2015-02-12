@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'welcome/index'
+
+  root 'welcome#index'
+  
   resources :tales, except: [:destroy, :edit]
 
   # The priority is based upon order of creation: first created -> highest priority.
