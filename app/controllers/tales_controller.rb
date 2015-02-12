@@ -1,12 +1,10 @@
 class TalesController < ApplicationController
   def index
     @tales = Tale.all
-    render json: @tales, status: 200
   end
 
   def show
     @tale = Tale.find(params[:id])
-    render json: @tale, status: 200
   end
   
   def new
@@ -14,6 +12,7 @@ class TalesController < ApplicationController
   end
   
   def create
+    tale = Tale.create
   end
 
   def edit
