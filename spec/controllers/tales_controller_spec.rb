@@ -8,11 +8,10 @@ RSpec.describe TalesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
     
-    it 'returns an array of tale objects' do
-      FactoryGirl.create(:tale)
-      FactoryGirl.create(:tale)
-      expect(response).to_be a_array
-      expect(response.length).to eq(2)
+    it 'returns all of tale objects in db' do
+      FactoryGirl.create_list(:tale, 3)
+      get :index 
+      expect(response.to_a.count).to eq(3)
     end
   end
 
