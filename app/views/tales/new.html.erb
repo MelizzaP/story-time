@@ -1,2 +1,24 @@
-<h1>Tales#new</h1>
-<p>Find me in app/views/tales/new.html.erb</p>
+<h1>New Tale</h1>
+<%= form_tag("/tales", method: "post") do %>
+  <%= label_tag('tale[public_access]', "Who can collaborate?") %>
+  <br>
+  <%= radio_button_tag('tale[public_access]', true) %>
+  <%= label_tag('tale[public_access]', 'Everyone!') %>
+  <%= radio_button_tag('tale[public_access]', false) %>
+  <%= label_tag('tale[public_access]', 'Just my friends!') %>
+  <br>
+  <%= label_tag('tale[story_type]', 'Do you want to tell the story one word or one sentence at a time?') %>
+  <br>
+  <%= radio_button_tag('tale[story_type]', 'word') %>
+  <%= label_tag('tale[story_type]', 'Word') %>
+  <%= radio_button_tag('tale[story_type]', 'sentence') %>
+  <%= label_tag('tale[story_type]', 'sentence') %>
+  <br>
+
+  <%= label_tag('tale[title]', "Title") %>
+  <%= text_field_tag('tale[title]') %><br>
+
+  <%= submit_tag("submit") %>
+<% end %>
+
+
