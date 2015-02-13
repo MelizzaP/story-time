@@ -11,7 +11,12 @@ RSpec.describe Tale, type: :model do
     expect(response.id).to eq(tale.id)
   end
   
-  it 'updates the content of a tale'
+  it 'updates the content of a tale' do
+    tale = FactoryGirl.create(:tale)
+    Tale.update_content({:id => tale.id, :text => 'Once'})
+    response = Tale.find_by_id(tale.id)
+    expect(response.content).to eq('Once')
+  end
   
   context 'when story_type is word' do
     it 'only allows one word to be inserted'
