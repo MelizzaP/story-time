@@ -12,7 +12,9 @@ class TalesController < ApplicationController
   end
   
   def create
-    tale = Tale.create
+    tale = Tale.new(tale_params)
+    tale.save
+    redirect_to tales_path
   end
 
   def edit
@@ -20,5 +22,9 @@ class TalesController < ApplicationController
 
   def destroy
   end
-  
+ 
+ private
+  def tale_params
+    params.require(:tale).permit(:public_access, :story_type, :title, :content, :inspiration) 
+  end
 end
