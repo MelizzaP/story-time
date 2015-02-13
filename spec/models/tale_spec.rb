@@ -4,7 +4,13 @@ RSpec.describe Tale, type: :model do
   
   it 'generates a list of titles'
   it 'generates a list of inspiration'
-  it "gets a tale by id"
+  
+  it "gets a tale by id" do 
+    tale = FactoryGirl.create(:tale)
+    response = Tale.find_by_id(tale.id)
+    expect(response.id).to eq(tale.id)
+  end
+  
   it 'updates the content of a tale'
   
   context 'when story_type is word' do
@@ -20,11 +26,11 @@ RSpec.describe Tale, type: :model do
     it 'makes a user wait until two sentences have been added'
   end
   
-  content 'public_access=true' do
+  context 'public_access=true' do
     it 'allows any user to update tale'
   end
   
-  content 'public_access=false'
+  context 'public_access=false' do
     it 'allows only users assigned to update tale'
   end  
 end
