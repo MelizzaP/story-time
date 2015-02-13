@@ -1,2 +1,14 @@
-<h1>Tales#index</h1>
-<p>Find me in app/views/tales/index.html.erb</p>
+<h1>Let's tell a tale!</h1>
+<h3>Public</h3>
+<% @tales.each do |tale| %>
+  <% if tale['public_access'] %>
+    <a href="#"><%=tale['title']%>
+  <% end %>
+<% end %> 
+
+<h3>Private</h3>
+<% @tales.each do |tale| %>
+  <% unless tale['public_access'] %>
+    <a href="#"><%=tale['title']%>
+  <% end %>
+<% end %> 
