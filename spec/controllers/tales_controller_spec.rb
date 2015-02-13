@@ -45,8 +45,8 @@ RSpec.describe TalesController, type: :controller do
 
   describe "GET #create" do
     it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+      post :create, tale: FactoryGirl.attributes_for(:tale)
+      expect(response).to redirect_to(tales_path)
     end
   end
 
