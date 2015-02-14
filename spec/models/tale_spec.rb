@@ -33,7 +33,6 @@ RSpec.describe Tale, type: :model do
       expect(db.content).to eq('My foot is a')
     end
     
-    it 'raises error for multiple words'
     it 'makes user wait until 2 words have been added'
     it 'makes sure that input is a word'
   end
