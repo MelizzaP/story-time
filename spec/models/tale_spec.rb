@@ -47,8 +47,18 @@ RSpec.describe Tale, type: :model do
       expect(db_tale.content).to eq('Finally, I have a cool backpack!')
     end
     
-    it 'ensures sentence is less than 140 characters'
-    it 'saves updated content to the data base'
+    it 'ensures sentence is less than 140 characters' do
+      tale = FactoryGirl.create(:sentence_tale)
+      Tale.update_content(
+        {
+          :id => tale.id,
+          :text => 'this string is 141  characters long ablakjdflkajdadfffffffffffffffffffffffffdddd dddddddddddddddddddddddddddddddddddddddddddddddddddddddddadd'
+        }
+      )
+      db_tale = Tale.find_by_id(tale.id)
+      expect(db_tale.content).to be_nil
+    end
+    
     it 'makes a user wait until two sentences have been added'
   end
   

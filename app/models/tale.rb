@@ -10,7 +10,7 @@ class Tale < ActiveRecord::Base
     tale = find_by_id(params[:id])
 #   only allows one word/sentence to be added
     if(tale.story_type == 'word' && params[:text].split(' ').length == 1 ||
-      tale.story_type == 'sentence' && params[:text].split('/[?.!]/').length == 1)
+      tale.story_type == 'sentence' && params[:text].split('/[?.!]/').length == 1 && params[:text].length < 141)
         content = (tale.content || '') + params[:text] 
         tale.update(:content => content)
     end
