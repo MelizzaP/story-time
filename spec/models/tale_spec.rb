@@ -34,11 +34,19 @@ RSpec.describe Tale, type: :model do
     end
     
     it 'makes user wait until 2 words have been added'
+#   can I do this?
     it 'makes sure that input is a word'
+    
   end
   
   context 'when story_type is sentence' do
-    it 'only allows one sentence to be inserted'
+    it 'allows one sentence to be inserted' do
+      tale = FactoryGirl.create(:sentence_tale)
+      Tale.update_content({:id => tale.id, :text => 'Finally, I have a cool backpack!'})
+      db_tale = Tale.find_by_id(tale.id)
+      expect(db_tale.content).to eq('Finally, I have a cool backpack!')
+    end
+    
     it 'ensures sentence is less than 140 characters'
     it 'saves updated content to the data base'
     it 'makes a user wait until two sentences have been added'
