@@ -19,7 +19,21 @@ RSpec.describe Tale, type: :model do
   end
   
   context 'when story_type is word' do
-    it 'only allows one word to be inserted'
+    it 'allows one word to be inserted' do
+      tale = FactoryGirl.create(:tale)
+      Tale.update_content({:id => tale.id, :text => 'Finally'})
+      response = Tale.find_by_id(tale.id)
+      expect(response.content).to eq('Finally')
+    end
+    
+    it 'does not allow multiple words' do
+      tale = FactoryGirl.create(:full_tale)
+      Tale.update_content({:id => tale.id, :text => 'Finally stuff'})
+      db = Tale.find_by_id(tale.id)
+      expect(db.content).to eq('My foot is a')
+    end
+    
+    it 'raises error for multiple words'
     it 'makes user wait until 2 words have been added'
     it 'makes sure that input is a word'
   end

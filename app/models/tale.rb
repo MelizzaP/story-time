@@ -8,8 +8,12 @@ class Tale < ActiveRecord::Base
   
   def self.update_content(params)
     tale = find_by_id(params[:id])
-    content = (tale.content || '') + params[:text] 
-    tale.update(:content => content)
+#   only allows one word/sentence to be added
+    if(tale.story_type == 'word' && params[:text].split(' ').length == 1 ||
+      tale.story_type == 'sentence' && params[:text].split('.').length == 1)
+        content = (tale.content || '') + params[:text] 
+        tale.update(:content => content)
+    end
   end
-
+   
 end
