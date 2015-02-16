@@ -6,14 +6,14 @@
   <h3>Your Tales</h3>
   <% @tales.each do |tale| %>
     <% unless tale['public_access'] %>
-      <%= link_to tale['title'], tale_path %>
+      <%= link_to tale['title'], tale_path(tale[:id]) %>
     <% end %>
   <% end %> 
   
   <h3>Public Tales</h3>
   <% @tales.each do |tale| %>
     <% if tale['public_access'] %>
-     <%= link_to tale['title'], tale_path %>
+     <%= link_to tale['title'], tale_path(tale[:id]) %>
     <% end %>
   <% end %> 
 
