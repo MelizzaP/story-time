@@ -63,10 +63,37 @@ RSpec.describe Tale, type: :model do
   end
   
   context 'public_access=true' do
-    it 'allows any user to update tale'
+    it 'allows any user to update tale' do
+      tale = FactoryGirl.create(:tale)
+      user = FactoryGirl.create(:user)
+      Tale.update_content({:id => tale.id, :text => 'Once', :user_id => user.id})
+      db_tale = Tale.find_by_id(tale.id)
+      expect(db_tale.content).to eq('Once')
+    end
   end
   
   context 'public_access=false' do
-    it 'allows only users assigned to update tale'
+    it 'allows users assigned to update tale' do
+      user_tale = FactoryGirl.create(:user_tale)
+#       FactoryGirl.create_list(:user_tale, 5)
+      Tale.update_content(
+        {
+          :id => user_tale.tale_id, 
+          :text => 'Once', 
+          :user_id => user_tale.user_id
+        })
+      db_tale = Tale.find_by_id(user_tale.tale_id)
+      expect(db_tale.content).to eq('Once')
+  end
+  
+    it 'does not update db when users not assigned to tale' do
+      user_tale = FactoryGirl.create(:user_tale)
+      user = FactoryGirl.create(:user)
+      tale = Tale.find(user_tale.tale_id)
+      Tale.update_content({:id => tale.id, :text => 'Once', :user_id => user.id})
+      db_tale = Tale.find_by_id(tale.id)
+      expect(db_tale.content).to be_nil
+    end
+    
   end  
 end
