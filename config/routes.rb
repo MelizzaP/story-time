@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'welcome/index'
-
+  
   root 'welcome#index'
+  
+  get 'about', to: 'welcome#about', as: 'about'
   
   resources :tales, except: [:destroy, :edit]
 
