@@ -1,14 +1,20 @@
-<h1>Let's tell a tale!</h1>
-<h3>Public</h3>
-<% @tales.each do |tale| %>
-  <% if tale['public_access'] %>
-    <a href="#"><%=tale['title']%>
-  <% end %>
-<% end %> 
+<div class="taledex">
+  <div class="create">
+    <%= link_to 'Create a new tale!', new_tale_path %>
+  </div>
+  
+  <h3>Your Tales</h3>
+  <% @tales.each do |tale| %>
+    <% unless tale['public_access'] %>
+      <%= link_to tale['title'], tale_path %>
+    <% end %>
+  <% end %> 
+  
+  <h3>Public Tales</h3>
+  <% @tales.each do |tale| %>
+    <% if tale['public_access'] %>
+     <%= link_to tale['title'], tale_path %>
+    <% end %>
+  <% end %> 
 
-<h3>Private</h3>
-<% @tales.each do |tale| %>
-  <% unless tale['public_access'] %>
-    <a href="#"><%=tale['title']%>
-  <% end %>
-<% end %> 
+</div>
