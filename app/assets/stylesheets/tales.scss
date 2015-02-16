@@ -1,3 +1,27 @@
 // Place all the styles related to the Tales controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.taledex, .new-tale {
+  background: rgba(54,  186,  182, 0.71);
+  padding-bottom: 40px;
+  margin:0px 50px 0px 50px;
+  border-radius: 30px;
+  text-align: center;
+}
+
+div.create {
+  padding-top: 20px;
+}
+
+div.taledex h3 {
+  text-decoration: underline;
+  font-family: fantasy;
+}
+
+div.new-tale h1{
+  font-family: fantasy;
+  text-decoration: underline;
+  padding-top: 20px;
+
+}
