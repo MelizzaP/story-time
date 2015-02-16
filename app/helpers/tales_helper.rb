@@ -1,2 +1,0 @@
-module TalesHelper
-end

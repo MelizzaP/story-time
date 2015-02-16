@@ -1,3 +1,23 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  background-image: url(tale.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+div.title {
+  font-family: fantasy;
+  font-size: larger; 
+  color: white;
+  text-shadow: 3px 3px 2px black;
+  text-align: center;
+}
+
+div.nav {
+  font-family: serif;
+  text-align: center;
+  bottom:0;
+}
