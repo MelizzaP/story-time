@@ -43,6 +43,11 @@ div.title {
   clear: both:
 }
 
+div.nav {
+  padding: 32px;
+  margin-top: -43px;
+  }
+
 div.nav a{
   font-family: serif;
   text-align: center;
