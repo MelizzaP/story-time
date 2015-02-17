@@ -1,6 +1,7 @@
 class Tale < ActiveRecord::Base
   has_many :user_tales
   has_many :users, :through => :user_tales
+  belongs_to :user
 
   def self.find_by_id(id)
     Tale.find(id)
