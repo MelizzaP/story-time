@@ -1,4 +1,22 @@
 <div class="tale">
   <h1><%= @tale.title %></h1>
-  <p><%= @tale.content %></p>
+  <p>
+    <%= @tale.content %>
+    <%= form_tag("/tales/#{@tale.id}", method: 'patch') do %>
+      <%= text_field_tag 'text', nil, placeholder: 'Input text here' %>
+      <%= hidden_field_tag(:tale_id, @tale.id) %>
+      <%= hidden_field_tag(:user_id, current_user.id) %>
+      <%= submit_tag %>
+    <% end %>
+    <% if @errors %>
+      <%= puts @errors %>
+    <% end %>
+  </p>
+  </br>
+  <% if @tale.owner_id == current_user.id && @tale.public_access %>
+    <%= form_tag("/tales/#{@tale.id}", method: 'patch') do %>
+      <%= hidden_field_tag(:complete, true) %>
+      <%= submit_tag('THE END') %>
+    <% end %>
+  <% end %>
 </div>
