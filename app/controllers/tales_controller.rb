@@ -1,4 +1,6 @@
 class TalesController < ApplicationController
+  before_action :authenticate_user!, :except => :index
+  
   def index
     @tales = Tale.all
   end
@@ -13,6 +15,7 @@ class TalesController < ApplicationController
   
   def create
     tale = Tale.new(tale_params)
+    tale.owner_id = current_user.id
     tale.save
     redirect_to tales_path
   end
