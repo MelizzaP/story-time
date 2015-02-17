@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div.taledex, .new-tale {
+div.taledex, .new-tale, .tale {
   background: rgba(54,  186,  182, 0.71);
   padding-bottom: 40px;
   margin:0px 50px 0px 50px;
@@ -24,4 +24,10 @@ div.new-tale h1{
   text-decoration: underline;
   padding-top: 20px;
 
+}
+
+.tale h1 {
+  padding-top: 20px;
+  font-family: fantasy;
+  text-decoration: underline;
 }
