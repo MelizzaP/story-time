@@ -22,12 +22,13 @@ class Tale < ActiveRecord::Base
     
     # finds if the tale is public and if the user has persmission to edit it
     access = tale.public_access || !tale.public_access && users.include?(params[:user_id])
+    # will be true if params[:user] was not the last user to edit content
+    not_last_user = params[:user_id] != tale.last_user
     
-    if(word_requirements && access || sentence_requirements && access) 
-      content = (tale.content || '') + params[:text] 
-      tale.update(:content => content)
+    if((word_requirements || sentence_requirements) && access && not_last_user) 
+      content = (tale.content || '') + params[:text] + ' '
+      tale.update(:content => content, :last_user => params[:user_id])    
     end
   end
   
-   
 end

@@ -2,80 +2,89 @@ require 'rails_helper'
 
 RSpec.describe Tale, type: :model do
   
+  before(:each) do
+    @tale = FactoryGirl.create(:tale)
+    @user = FactoryGirl.create(:user)
+  end
+  
   it 'generates a list of titles'
   it 'generates a list of inspiration'
   
   it "gets a tale by id" do 
-    tale = FactoryGirl.create(:tale)
-    response = Tale.find_by_id(tale.id)
-    expect(response.id).to eq(tale.id)
+    db_tale = Tale.find_by_id(@tale.id)
+    expect(db_tale.id).to eq(@tale.id)
   end
   
   it 'updates the content of a tale' do
-    tale = FactoryGirl.create(:tale)
-    Tale.update_content({:id => tale.id, :text => 'Once'})
-    response = Tale.find_by_id(tale.id)
-    expect(response.content).to eq('Once')
+    Tale.update_content({:id => @tale.id, :text => 'Once', :user_id => @user.id})
+    db_tale = Tale.find_by_id(@tale.id)
+    expect(db_tale.content).to eq('Once ')
   end
   
   context 'when story_type is word' do
     it 'allows one word to be inserted' do
-      tale = FactoryGirl.create(:tale)
-      Tale.update_content({:id => tale.id, :text => 'Finally'})
-      response = Tale.find_by_id(tale.id)
-      expect(response.content).to eq('Finally')
+      Tale.update_content({:id => @tale.id, :text => 'Finally', :user_id => @user.id})
+      db_tale = Tale.find_by_id(@tale.id)
+      expect(db_tale.content).to eq('Finally ')
     end
     
     it 'does not allow multiple words' do
-      tale = FactoryGirl.create(:full_tale)
-      Tale.update_content({:id => tale.id, :text => 'Finally stuff'})
-      db = Tale.find_by_id(tale.id)
-      expect(db.content).to eq('My foot is a')
+      Tale.update_content({:id => @tale.id, :text => 'Finally stuff', :user_id => @user.id})
+      db_tale = Tale.find_by_id(@tale.id)
+      expect(db_tale.content).to be_nil
     end
     
-    it 'makes user wait until 2 words have been added'
-#   can I do this?
-    it 'makes sure that input is a word'
+    it 'user cannot add 2 consecutive words' do
+      Tale.update_content({:id => @tale.id, :text => 'Finally', :user_id => @user.id})
+      Tale.update_content({:id => @tale.id, :text => 'I', :user_id => @user.id})
+      db_tale = Tale.find_by_id(@tale.id)
+      expect(db_tale.content).to eq('Finally ')
+    end
     
   end
   
   context 'when story_type is sentence' do
+    before(:each) do 
+      @sentence_tale = FactoryGirl.create(:sentence_tale)
+    end
+    
     it 'allows one sentence to be inserted' do
-      tale = FactoryGirl.create(:sentence_tale)
-      Tale.update_content({:id => tale.id, :text => 'Finally, I have a cool backpack!'})
-      db_tale = Tale.find_by_id(tale.id)
-      expect(db_tale.content).to eq('Finally, I have a cool backpack!')
+      Tale.update_content({:id => @sentence_tale.id, :text => 'Finally, I have a cool backpack!', :user_id => @user.id})
+      db_tale = Tale.find_by_id(@sentence_tale.id)
+      expect(db_tale.content).to eq('Finally, I have a cool backpack! ')
     end
     
     it 'ensures sentence is less than 140 characters' do
-      tale = FactoryGirl.create(:sentence_tale)
       Tale.update_content(
         {
-          :id => tale.id,
-          :text => 'this string is 141  characters long ablakjdflkajdadfffffffffffffffffffffffffdddd dddddddddddddddddddddddddddddddddddddddddddddddddddddddddadd'
+          :id => @sentence_tale.id,
+          :text => 'this string is 141  characters long ablakjdflkajdadfffffffffffffffffffffffffdddd dddddddddddddddddddddddddddddddddddddddddddddddddddddddddadd',
+          :user_id => @user.id
         }
       )
-      db_tale = Tale.find_by_id(tale.id)
+      db_tale = Tale.find_by_id(@sentence_tale.id)
       expect(db_tale.content).to be_nil
     end
     
-    it 'makes a user wait until two sentences have been added'
+    it 'user cannot add 2 consecutive sentences' do
+      Tale.update_content({:id => @sentence_tale.id, :text => 'Cats are cool.', :user_id => @user.id})
+      Tale.update_content({:id => @sentence_tale.id, :text => 'So say we all.', :user_id => @user.id})
+      db_tale = Tale.find_by_id(@sentence_tale.id)
+      expect(db_tale.content).to eq('Cats are cool. ')
+    end
   end
   
   context 'public_access=true' do
     it 'allows any user to update tale' do
-      tale = FactoryGirl.create(:tale)
-      user = FactoryGirl.create(:user)
-      Tale.update_content({:id => tale.id, :text => 'Once', :user_id => user.id})
-      db_tale = Tale.find_by_id(tale.id)
-      expect(db_tale.content).to eq('Once')
+      Tale.update_content({:id => @tale.id, :text => 'Once', :user_id => @user.id})
+      db_tale = Tale.find_by_id(@tale.id)
+      expect(db_tale.content).to eq('Once ')
     end
   end
   
   context 'public_access=false' do
     it 'allows users assigned to update tale' do
       user_tale = FactoryGirl.create(:user_tale)
-#       FactoryGirl.create_list(:user_tale, 5)
       Tale.update_content(
         {
           :id => user_tale.tale_id, 
@@ -83,7 +92,7 @@ RSpec.describe Tale, type: :model do
           :user_id => user_tale.user_id
         })
       db_tale = Tale.find_by_id(user_tale.tale_id)
-      expect(db_tale.content).to eq('Once')
+      expect(db_tale.content).to eq('Once ')
   end
   
     it 'does not update db when users not assigned to tale' do
