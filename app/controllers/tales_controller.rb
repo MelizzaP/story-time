@@ -20,7 +20,9 @@ class TalesController < ApplicationController
     redirect_to tales_path
   end
 
-  def edit
+  def update
+    Tale.update_content(params)
+    redirect_to tale_path(params[:tale_id])
   end
 
   def destroy
