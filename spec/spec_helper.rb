@@ -1,4 +1,6 @@
 require 'factory_girl'
+require 'devise'
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -33,4 +35,7 @@ RSpec.configure do |config|
       DatabaseCleaner.clean 
     end
   end
+  
+  # for user authentication with devise
+  config.include Devise::TestHelpers, :type => :controller 
 end
