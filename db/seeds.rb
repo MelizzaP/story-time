@@ -6,34 +6,34 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Tale.create(
-  {
-    inspiration: 'your mom', 
-    story_type: 'word', 
-    public_access: true,
-    content: 'Once upon a time',
-    title: 'A pretty lady'
-  },
-  {
-    inspiration: 'your mom 2', 
-    story_type: 'word', 
-    public_access: false,
-    content: 'Once upon a time',
-    title: 'A lady'
-  },
-   {
-    inspiration: 'your mom 3', 
-    story_type: 'sentence', 
-    public_access: true,
-    content: 'Once upon a time',
-    title: 'Ahhhhh lady'
-  },
-  {
-    inspiration: 'your mom 4', 
-    story_type: 'sentence', 
-    public_access: true,
-    content: 'Once upon a time',
-    title: 'The sneeze'
-  }
-)
+# Tale.create(
+#   {
+#     inspiration: 'your mom', 
+#     story_type: 'word', 
+#     public_access: true,
+#     content: 'Once upon a time',
+#     title: 'A pretty lady'
+#   },
+#   {
+#     inspiration: 'your mom 2', 
+#     story_type: 'word', 
+#     public_access: false,
+#     content: 'Once upon a time',
+#     title: 'A lady'
+#   },
+#    {
+#     inspiration: 'your mom 3', 
+#     story_type: 'sentence', 
+#     public_access: true,
+#     content: 'Once upon a time',
+#     title: 'Ahhhhh lady'
+#   },
+#   {
+#     inspiration: 'your mom 4', 
+#     story_type: 'sentence', 
+#     public_access: true,
+#     content: 'Once upon a time',
+#     title: 'The sneeze'
+#   }
+# )
 
