@@ -22,11 +22,11 @@ RSpec.describe TalesController, type: :controller do
   end
   
   describe "GET #show" do
-    xit 'returns the tale by id' do
+    it 'navigates to show page' do
       tale = FactoryGirl.create(:tale)
       FactoryGirl.create(:tale)
       get :show, { 'id' => tale.id }
-      expect(@tale).to eq(tale.id)
+      expect(response).to render_template(:show)
     end
     
     it 'returns http success' do
@@ -59,15 +59,6 @@ RSpec.describe TalesController, type: :controller do
   describe "GET #edit" do
     xit "returns http success" do
       get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-
-
-  describe "GET #destroy" do
-    xit "returns http success" do
-      get :destroy
       expect(response).to have_http_status(:success)
     end
   end
