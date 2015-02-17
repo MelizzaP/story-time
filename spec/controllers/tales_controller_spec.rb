@@ -4,8 +4,8 @@ RSpec.describe TalesController, type: :controller do
     
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user)
-      sign_in user
+      @user = FactoryGirl.create(:user)
+      sign_in @user
     end
 
   describe "GET #index" do
@@ -56,11 +56,28 @@ RSpec.describe TalesController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    xit "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
+  describe "GET #update" do
+    it "redirects to tale page" do
+      tale = FactoryGirl.create(:tale)
+      patch :update, {'id' => tale.id, :user_id => @user.id, :tale_id => tale.id, :text => 'Sup'}
+      expect(response).to redirect_to(tale_path(tale.id))
     end
+    
+    it 'calls method update_content' do
+      tale = FactoryGirl.create(:tale)
+      params = 
+        {
+          'id' => tale.id.to_s, 
+          'user_id' => @user.id.to_s, 
+          'tale_id' => tale.id.to_s, 
+          'text' => 'Sup', 
+          'controller' => 'tales', 
+          'action' => 'update' 
+        }
+      expect(Tale).to receive(:update_content).with(params)
+      patch :update, params 
+    end
+    
   end
 
 end
