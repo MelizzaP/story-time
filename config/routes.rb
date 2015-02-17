@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   get 'about', to: 'welcome#about', as: 'about'
   
-  resources :tales, except: [:destroy, :edit]
+  resources :tales, except: [:destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
