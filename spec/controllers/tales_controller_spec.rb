@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe TalesController, type: :controller do
+    
+    before(:each) do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      user = FactoryGirl.create(:user)
+      sign_in user
+    end
 
   describe "GET #index" do
     it "returns http success" do
