@@ -18,6 +18,11 @@ class TalesController < ApplicationController
     tale = Tale.new(tale_params)
     tale.owner_id = current_user.id
     tale.save
+    userTale = UserTale.new
+    userTale.user_id = current_user.id
+    userTale.tale_id = tale.id
+    userTale.save
+    params[:user_id]
     redirect_to tales_path
   end
 
