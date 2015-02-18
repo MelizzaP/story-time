@@ -20,7 +20,7 @@
   <%= label_tag('tale[public_access]', 'Private') %>
   </br></br>
   <div class="select">
-    <%= collection_select(nil, :user_id, @users, :id, :name, { :prompt => 'Select ahhh user'}, { :id => 'user_select' }) %>
+    <%= collection_select(nil, :user_id, @users, :id, :name, { :prompt => 'Select ahhh user'}, { :id => 'user_select', :name => 'tale[user_id][]' }) %>
     <a class="remove" href="#">remove</a>
     </br></br>
   </div> 
