@@ -24,6 +24,8 @@ RSpec.describe TalesController, type: :controller do
   describe "GET #show" do
     it 'navigates to show page' do
       tale = FactoryGirl.create(:tale)
+      user = FactoryGirl.create(:user)
+      tale.update(:owner_id => user.id)
       FactoryGirl.create(:tale)
       get :show, { 'id' => tale.id }
       expect(response).to render_template(:show)
@@ -31,9 +33,12 @@ RSpec.describe TalesController, type: :controller do
     
     it 'returns http success' do
      tale = FactoryGirl.create(:tale)
+     user = FactoryGirl.create(:user)
+     tale.update(:owner_id => user.id)
      get :show, { 'id' => tale.id }
      expect(response).to have_http_status(:success)
     end
+    
   end
   
   describe "GET #new" do
