@@ -2,14 +2,16 @@
   <h1><%= @tale.title %></h1>
   <p>
     <%= @tale.content %>
-    <%= form_tag("/tales/#{@tale.id}", method: 'patch') do %>
-      <%= text_field_tag 'text', nil, placeholder: 'Input text here' %>
-      <%= hidden_field_tag(:tale_id, @tale.id) %>
-      <%= hidden_field_tag(:user_id, current_user.id) %>
-      <%= submit_tag %>
-    <% end %>
-    <% if @errors %>
-      <%= puts @errors %>
+    <% if @tale.last_user != current_user.id %>
+      <%= form_tag("/tales/#{@tale.id}", method: 'patch') do %>
+        <%= text_field_tag 'text', nil, placeholder: 'Input text here' %>
+        <%= hidden_field_tag(:tale_id, @tale.id) %>
+        <%= hidden_field_tag(:user_id, current_user.id) %>
+        <%= submit_tag %>
+      <% end %>
+      <% if @errors %>
+        <%= puts @errors %>
+      <% end %>
     <% end %>
   </p>
   </br>
