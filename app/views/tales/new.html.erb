@@ -19,10 +19,52 @@
   <%= radio_button_tag('tale[public_access]', false) %>
   <%= label_tag('tale[public_access]', 'Private') %>
   </br></br>
-  <%= collection_select(:post, :user_id, @users, :id, :name, { :prompt => 'Select ahhh user'}, { :id => 'user_select' }) %>
+  <div class="select">
+    <%= collection_select(:post, :user_id, @users, :id, :name, { :prompt => 'Select ahhh user'}, { :id => 'user_select' }) %>
+    <a class="remove" href="#">remove</a>
+    </br></br>
+  </div> 
+  <a class='add' href="#">add</a>
   </br></br>
-
+  
+  
   <%= submit_tag("submit") %>
 <% end %>
 </div>
 
+<script type="text/javascript">
+//   hides the select tag and add/remove links
+  $('div.select').hide();
+  $('a.remove').hide();
+  $('a.add').hide();
+  
+//   when user clicks private it displays drop down and add/remove links
+  $('#tale_public_access_false').click(function() {
+    $('div.select').show();
+    $('a.add').show()
+    $('a.remove').show()
+  });
+  
+//   when user clicks public it hides drop down and add/remove
+  $('#tale_public_access_true').click(function() {
+    $('div.select').hide();
+    $('a.remove').hide();
+    $('a.add').hide();
+  }); 
+  
+  var $select = $('div.select').clone()
+  
+  // when user clicks add it adds another drop down and remove button to element
+  $(document).on('click','a.add', function (event) {
+    event.preventDefault();
+    $(event.currentTarget).before($select.clone())
+    $('div.select').show()
+    $('a.remove').show()
+  });
+  
+  //when a user clicks on remove it removes that selector
+  $(document).on('click','a.remove', function (event) {
+    event.preventDefault();
+    $(event.currentTarget).parent().remove()
+  });
+</script>
