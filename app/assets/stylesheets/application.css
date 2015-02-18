@@ -60,3 +60,16 @@ div.nav a{
 div.nav a:hover {
   color: #d5ff00;
 }
+
+div.signup {
+  float: right;
+  background: rgba(54,  186,  182, 0.71);
+  border-radius: 30px;
+  text-align: center;
+  padding: 0px 10px 20px 10px
+}
+
+div.signup h2 {
+  text-decoration: underline;
+  font-family: fantasy;
+}
