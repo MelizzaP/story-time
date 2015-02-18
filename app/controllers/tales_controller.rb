@@ -18,9 +18,11 @@ class TalesController < ApplicationController
     tale = Tale.new(tale_params)
     tale.owner_id = current_user.id
     tale.save
-    UserTale.create({:user_id => current_user.id, :tale_id => tale.id })
-    params[:tale][:user_id].each do |id|
-      UserTale.create({ :tale_id => tale.id, :user_id => id.to_i })
+    if(params[:tale][:public_access] == 'false')
+      UserTale.create({:user_id => current_user.id, :tale_id => tale.id })
+      params[:tale][:user_id].each do |id|
+        UserTale.create({ :tale_id => tale.id, :user_id => id.to_i })
+      end
     end
     redirect_to tales_path
   end
