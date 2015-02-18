@@ -7,6 +7,8 @@ class TalesController < ApplicationController
 
   def show
     @tale = Tale.find(params[:id])
+    @user = User.find(@tale.owner_id)
+    @contributors =  User.find_by_sql('select name from users inner join user_tales on users.id = user_tales.user_id where user_tales.tale_id =' + @tale.id.to_s)
   end
   
   def new

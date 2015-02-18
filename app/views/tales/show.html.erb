@@ -1,5 +1,7 @@
 <div class="tale">
   <h1><%= @tale.title %></h1>
+  <h5>Created by: <%= @user.name %> </h5>
+
   <p>
     <%= @tale.content %>
     <% if @tale.last_user != current_user.id %>
@@ -21,4 +23,12 @@
       <%= submit_tag('THE END') %>
     <% end %>
   <% end %>
-</div>
+
+<% if !@tale.public_access %>
+<h6>Contributors: </h6> 
+  <% @contributors.each do |contributor| %>
+   <%= contributor.name %>
+  <% end %>
+<% end %>
+
+</div
