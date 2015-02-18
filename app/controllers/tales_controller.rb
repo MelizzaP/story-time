@@ -11,6 +11,7 @@ class TalesController < ApplicationController
   
   def new
     @tale = Tale.new
+    @users = User.all
   end
   
   def create
