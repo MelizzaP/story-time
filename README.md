@@ -4,7 +4,7 @@ Let's Tell a Tale
 [![Build Status](https://travis-ci.org/MelizzaP/story-time.svg?branch=master)](https://travis-ci.org/MelizzaP/story-time)
 
 
-Let's Make a Story is a web application that allows users to collaborate through creating a story one word or sentence at a time.
+A web application that allows users to collaborate through creating a story one word or sentence at a time.
 
 ---
 
