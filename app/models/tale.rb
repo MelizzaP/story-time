@@ -25,7 +25,7 @@ class Tale < ActiveRecord::Base
     # will be true if params[:user] was not the last user to edit content
     last_user = params[:user_id].to_i == tale.last_user
     
-    if((word_requirements || sentence_requirements) && access) 
+    if((word_requirements || sentence_requirements) && access && !last_user) 
       content = (tale.content || '') + params[:text] + ' '
       tale.update(:content => content, :last_user => params[:user_id].to_i)   
     end
