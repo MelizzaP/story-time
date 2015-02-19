@@ -8,8 +8,8 @@ class Tale < ActiveRecord::Base
   end
   
   def self.update_content(params)
-    tale = find_by_id(params[:id])
-    users = UserTale.where(:tale_id => params[:id]).map { |user_tale| user_tale.user_id}
+    tale = find_by_id(params[:id].to_i)
+    users = UserTale.where(:tale_id => params[:id]).map { |user_tale| user_tale.user_id.to_i}
     
     # only allows one word to be added                     
     word_requirements = tale.story_type == 'word' &&  
@@ -21,13 +21,13 @@ class Tale < ActiveRecord::Base
       params[:text].length < 141  #  sentence must be 140 characters or less
     
     # finds if the tale is public and if the user has persmission to edit it
-    access = tale.public_access || !tale.public_access && users.include?(params[:user_id])
+    access = tale.public_access || !tale.public_access && users.include?(params[:user_id].to_i)
     # will be true if params[:user] was not the last user to edit content
-    last_user = params[:user_id] == tale.last_user
+    last_user = params[:user_id].to_i == tale.last_user
     
-    if(word_requirements && access && !last_user || sentence_requirements && access && !last_user) 
+    if((word_requirements || sentence_requirements) && access) 
       content = (tale.content || '') + params[:text] + ' '
-      tale.update(:content => content, :last_user => params[:user_id])    
+      tale.update(:content => content, :last_user => params[:user_id].to_i)   
     end
   end
   
