@@ -1,10 +1,11 @@
+
 <div class="tale">
   <h1><%= @tale.title %></h1>
   <h5>Created by: <%= @user.name %> </h5>
 
   <p>
     <%= @tale.content %>
-    <% if @tale.last_user != current_user.id %>
+    <%  if @tale.last_user != current_user.id && !@tale.complete%>
       <%= form_tag("/tales/#{@tale.id}", method: 'patch') do %>
         <%= text_field_tag 'text', nil, placeholder: 'Input text here' %>
         <%= hidden_field_tag(:tale_id, @tale.id) %>
@@ -17,7 +18,7 @@
     <% end %>
   </p>
   </br>
-  <% if @tale.owner_id == current_user.id && @tale.public_access %>
+  <% if @tale.owner_id == current_user.id  %>
     <%= form_tag("/tales/#{@tale.id}", method: 'patch') do %>
       <%= hidden_field_tag(:complete, true) %>
       <%= submit_tag('THE END') %>
@@ -27,7 +28,7 @@
 <% if !@tale.public_access %>
 <h6>Contributors: </h6> 
   <% @contributors.each do |contributor| %>
-   <%= contributor.name %>
+   <%= contributor.name  %>
   <% end %>
 <% end %>
 
