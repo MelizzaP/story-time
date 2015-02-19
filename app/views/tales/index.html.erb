@@ -5,8 +5,17 @@
   
   <h3>Your Tales</h3>
   <% @tales.each do |tale| %>
-    <% unless tale['public_access'] %>
-      <%= link_to tale['title'], tale_path(tale[:id]) %>
+    <% if tale['owner_id'] == current_user.id  %>
+      <%= link_to tale.title, tale_path(tale.id) %>
+    <% end %>
+  <% end %> 
+  
+  <h3>Tales You Can Edit</h3>
+  <% if @contributions %> 
+    <% @contributions.each do |tale| %>
+      <% unless tale.owner_id == current_user.id %>
+        <%= link_to tale['title'], tale_path(tale[:id]) %>
+      <% end %>
     <% end %>
   <% end %> 
   
