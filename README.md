@@ -4,7 +4,9 @@ Let's Tell a Tale
 [![Build Status](https://travis-ci.org/MelizzaP/story-time.svg?branch=master)](https://travis-ci.org/MelizzaP/story-time)
 
 
-A web application that allows users to collaborate through creating a story one word or sentence at a time.
+A web application that allows users to collaborate through creating a story one word or sentence at a time.  
+Users can create public tales that any user can edit, or private tales and choose other users to collaborate.  
+Users can only input one word or sentence at a time.
 
 ---
 
