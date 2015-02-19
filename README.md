@@ -79,5 +79,3 @@ Plans for the Future
 * Dynamic styling to update tale content without reloading the page
 
 
-
-<tt>rake doc:app</tt>.
