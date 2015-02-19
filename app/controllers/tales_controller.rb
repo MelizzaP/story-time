@@ -1,8 +1,9 @@
 class TalesController < ApplicationController
-  before_action :authenticate_user!, :except => :index
+  before_action :authenticate_user!, :except => [:index]
   
   def index
     @tales = Tale.all
+    @contributions = Tale.find_by_sql('SELECT * FROM tales INNER JOIN user_tales ON tales.id = user_tales.tale_id WHERE user_tales.user_id =' + current_user.id.to_s)
   end
 
   def show
