@@ -18,9 +18,10 @@
     <% end %>
   </p>
   </br>
-  <% if @tale.owner_id == current_user.id  %>
+  <% if @tale.owner_id == current_user.id && !@tale.complete %>
     <%= form_tag("/tales/#{@tale.id}", method: 'patch') do %>
       <%= hidden_field_tag(:complete, true) %>
+      <%= hidden_field_tag(:tale_id, @tale.id) %>
       <%= submit_tag('THE END') %>
     <% end %>
   <% end %>
