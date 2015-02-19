@@ -16,18 +16,25 @@ Let's Make a Story is a web application that allows users to collaborate through
 
 ### Installation
 Run the following commands in your terminal
+```
   git clone git@github.com:MelizzaP/story-time.git story_time
   cd story_time
   bundle install
-
+```
 Create a database by running
+```
   bundle exec rake db:create db:migrate
+```
   
 Run locally(localhost:3000)
+```
   rails server
+```
   
 Run test suite
+```
   bundle exec rspec
+```
   
 The app is also currently deployed on heroku at (https://warm-plains-8420.herokuapp.com)  
   
@@ -39,6 +46,7 @@ Requirements
 2.1.3p242 (2014-09-19 revision 47630)
 
 #### Dependencies
+```
   byebug
   capybara
   coffee-rails (~> 4.1.0)
@@ -58,6 +66,7 @@ Requirements
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+```  
 
 ---
 Plans for the Future
