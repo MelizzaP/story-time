@@ -31,4 +31,9 @@ class Tale < ActiveRecord::Base
     end
   end
   
+  def self.complete(params) 
+    tale = find_by_id(params[:id].to_i)
+    tale.update(:complete => true)
+  end
+  
 end
