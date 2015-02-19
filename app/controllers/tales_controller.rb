@@ -31,7 +31,11 @@ class TalesController < ApplicationController
   end
 
   def update
-    Tale.update_content(params)
+    if(params[:complete])
+      Tale.complete(params) 
+    else
+      Tale.update_content(params)
+    end
     redirect_to tale_path(params[:tale_id])
   end
 
