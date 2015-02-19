@@ -9,10 +9,10 @@ Let's Make a Story is a web application that allows users to collaborate through
 ---
 
 ### Technologies Used
-  Server-side: Ruby on Rails, Devise, PostgreSQL
-  Client-side: JavaScript, JQuery
-  Testing: Rspec, TravisCI
-  Deployment: Heroku
+  * Server-side: Ruby on Rails, Devise, PostgreSQL
+  * Client-side: JavaScript, JQuery
+  * Testing: Rspec, TravisCI
+  * Deployment: Heroku
 
 ### Installation
 Run the following commands in your terminal
