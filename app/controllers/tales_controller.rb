@@ -1,5 +1,5 @@
 class TalesController < ApplicationController
-  before_action :authenticate_user!, :except => [:index]
+  before_action :authenticate_user!
   
   def index
     @tales = Tale.all
